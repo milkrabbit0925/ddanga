@@ -1,0 +1,315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% load static %}
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="{% static 'js/jquery_1.8.js' %}"></script>
+    <script src="{% static 'js/jquery_cookie.js' %}"></script>
+	<link rel="shortcut icon" href="{% static 'images/favicon.ico?v=20160901' %}" type="image/x-icon">
+    <link href="{% static 'css/shopping_cart_new.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/footer_150526.css' %}" rel="stylesheet" type="text/css" />
+</head>
+
+<body style="padding-bottom:82px">
+
+<link href="{% static 'css/header_960_150611.css' %}" rel="stylesheet" type="text/css">
+<script src="{% static 'js/pagetop2015_0827.js' %}" charset="gb2312" type="text/javascript"></script>
+
+<div id="hd">
+<div id="tools">
+<div class="tools">
+    <div class="ddnewhead_operate" dd_name="顶链接">
+        
+        <div class="ddnewhead_welcome" display="none;">
+            <span id="nickname">
+
+                    <span class="hi hi_none">Hi,{{ uname }}光临当当!  <a href="{% url 'index' %}?status=0" >[登出]</a></span>
+
+
+
+
+            </span>
+            <div class="tel_pop" style="display:none" id="__ddnav_sjdd" onmouseover="showgaoji('a_phonechannel','__ddnav_sjdd');" onmouseout="hideotherchannel('a_phonechannel','__ddnav_sjdd');">
+                <a target="_blank" href="http://t.dangdang.com/20130220_ydmr" class="title"><i class="icon_tel"></i>手机当当</a><i class="title_shadow"></i>
+                <ul class="tel_pop_box">
+                    <li><a href="http://t.dangdang.com/20130220_ydmr" dd_name="手机二维码"><span>当当手机客户端</span><img src="http://img3.ddimg.cn/00363/doc/erweima2.png"><span class="text">随手查订单<br>随时享优惠</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="new_head_znx" id="znx_content" style="display:none;"></div>
+    </div>
+</div>
+</div>
+<div id="header_end"></div>
+<!--CreateDate  2016-09-28 11:30:01--></div>
+<form action="http://search.dangdang.com/search.aspx" id="bootpagetopSearch" name="bootpagetopSearch" method="GET"></form>
+<script type="text/javascript">var nick_num = 0;initHeaderOperate();</script><script type="text/javascript" src="http://orderb.dangdang.com/queryunpaid?callback=Unpaid_Data"></script>
+		<div class="shoppingcart_wrapper" id="ad_cpt_11850"><div><a href="http://a.dangdang.com/tjump.php?q=ddo84XQOf357bOs8tXGg5%2F%2F0oVoDImt3DFWsMqu7ZMSVsfUMeOQJueASNiMLjq%2FdrXMLCKnVfyKEahteAh1ih%2ByKYrKGzhvL20LVbDzObRambBA0YPpivy5hR5foQ4Rt%2BTB" target="_blank" rel="nofollow"><img src="http://img62.ddimg.cn/2017/1/11/2017011111344969879.jpg"></a></div></div>
+<div class="logo_line">
+    <div class="w960">
+        <div class="shopping_procedure01 shopping_procedure "><span>我的购物车</span><span class="current">填写订单</span><span>完成订单</span></div>
+        <div class="logo"><a href="#"><img src="{% static 'images/bz_logo_car.jpg' %}" alt=""></a></div>
+    </div>
+</div>
+<div class="indent_con">
+    <form action="#" method="post">
+        {% csrf_token %}
+        <div class="shdz">
+    	<h3>收货相关信息</h3>
+        <ul class="shdz_con">
+            <p>▪ 收货地址</p>
+            <li>
+                <div class="add_line" id="district">
+    <div class="w960">
+        <div class="address" id="dp_adress">
+
+                    <ul class="list list_notaligned fn-adress">
+
+                    </ul>
+{#                </div>#}
+{#            </div>#}
+            <!--<a href="#" class="tip"></a>-->
+            <span class="tip_c" style="display:none;">针对不同配送地址，您的货物可能出现缺货或无货状态，敬请谅解。</span>
+        </div>
+    </div>
+</div>
+            </li>
+            <li>
+             <span class="icon_adr">&nbsp;</span>配送地址：
+                <select class="tab" id="select" onchange="addsclick()">
+                        <option id="ap_province" value="new" class="fn-show-province"><a href="" id="selected_111">请选择</a></option>
+                        {% for foo in add %}
+                            <option id="ap_city" value="{{ foo.id }}" class="fn-show-city" ><a href="" id="selected_1">{{ foo.a_address }}</a></option>
+                        {% endfor %}
+
+
+
+                    </select>
+            </li>
+        	<li><label><strong>*</strong>收&nbsp;&nbsp;货&nbsp;&nbsp;人：</label><input id="input_user" type="text" name="ship_man" onblur="checkname()" value=""><span id="spn_ship_man" class="hint new_tip" style="display: block;">请填写收货人姓名</span></li>
+
+            <li><label><strong>*</strong>详细地址：</label><input type="text" id="input_address" onblur="checkadress()" name="ship_man2" value="" ><span id="spn_ship_adress" class="hint new_tip" style="display: block;">请填写收货地址</span></li>
+            <li><label><strong>*</strong>邮政编码：</label><input type="text" id="input_post" name="ship_man3" onblur="checkcode()" ><span id="spn_ship_code" class="hint new_tip" style="display: block;">请填写邮编</span></li>
+            <li><label><strong>*</strong>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</label><input type="text" id="input_phone" name="ship_man4" onblur="checkphone()"><span id="spn_ship_phone" class="hint new_tip" style="display: block;">请填写手机号</span></li>
+
+        </ul>
+
+        <div class="balance"><p>商品金额：¥{{ cart.dd_price|floatformat:"2" }}</p><p class="yfze">应付总额（含运费）：<em>¥{{ cart.dd_price|floatformat:"2" }}</em></p><p><a href="{% url 'indentok' %}">提交订单</a></p></div>
+    </div>
+    </form>
+
+    <div class="shdz">
+    	<h3>订单1（百知网配送）</h3>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr style="height:30px; line-height:30px;">
+                <th width="34%">商品名称</th>
+                <th width="11%">所在仓库</th>
+                <th width="13%">百知价</th>
+                <th width="11%">促销价</th>
+                <th width="9%">数量</th>
+                <th width="11%">小计</th>
+                <th width="11%">操作</th>
+            </tr>
+            
+                {% for info in cart.lst %}
+                        {% if info.state == True %}
+                    <tr>
+                        <td>{{ info.name }}</td>
+                        <td align="center">{{ info.press }}</td>
+                        <td align="center">{{ info.price|floatformat:"2" }}</td>
+                        <td align="center">{{ info.dd_price|floatformat:"2" }}</td>
+                        <td align="center">{{ info.amount }}</td>
+                        <td align="center">{{ info.all_price|floatformat:"2" }}</td>
+                        <td align="center"><a href="#">放回购物车</a></td>
+                       {% endif %}
+            {% endfor %}
+                    </tr>
+                     <tr>
+                        <td colspan="2"><input type="checkbox" >此订单作为礼品赠送他人</td>
+                        <td colspan="2"><strong>运费：</strong>当确认送货方式后显示</td>
+                        <td class="table_zj" colspan="3"><strong>小计总额：</strong><em>{{ cart.dd_price|floatformat:"2" }}</em></td>
+                    </tr>
+                
+            
+                
+            
+        </tbody></table>
+    </div>
+     
+</div>
+
+<div id="footer">
+<div class="footer">
+	<div class="footer_nav_box">
+		<div class="footer_copyright"><span>Copyright (C) 当当网 2004-2014, All Rights Reserved</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001051000098" target="_blank" class="footer_img" rel="nofollow"><img src="http://img4.dangdang.com/bottom/validate.gif"></a><span><a href="http://www.miibeian.gov.cn/" target="_blank" rel="nofollow">京ICP证041189号</a></span><span>出版物经营许可证&nbsp;新出发京批字第直0673号</span></div>
+	</div>
+</div>
+</div>
+    <div class="foot_tip_ad">广告</div>
+    <style>
+        .foot_tip_ad { width:40px; height:40px; font:12px/40px "simsun"; text-align:center; color:#fff; background-color:#474747; position:fixed; right:0; bottom:10px;_position:absolute; _bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));}
+    </style>
+
+
+<script>
+    function addsclick() {
+            var select = document.getElementById('select');
+            var index = select.selectedIndex;
+            var adid = select.options[index].value;
+            console.log(adid);
+            var url = "{% url 'checkadd' %}";
+            var xhr;
+            if(window.ActiveXObject){
+                xhr = new ActiveXObject("Microsoft.XMLHTTP")
+            }else if(window.XMLHttpRequest){
+                xhr = new XMLHttpRequest()
+            }
+            xhr.open("post",url,true);
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+            xhr.send('adid='+adid);
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState==4 && xhr.status==200) {
+                    var res = eval("("+xhr.responseText+")");
+                    console.log(res)
+                    var name = document.getElementById('input_user');
+                    var add = document.getElementById('input_address');
+                    var post = document.getElementById('input_post');
+                    var phone = document.getElementById('input_phone');
+                    name.value = res['name'];
+                    add.value = res['address'];
+                    post.value = res['post'];
+                    phone.value = res['phone'];
+                }
+            }
+        }
+
+
+    function checkname() {
+            var pid = document.getElementById('input_user').value;
+            var url = "{% url 'checkname' %}";
+
+            var xhr;
+            if(window.ActiveXObject){
+                xhr = new ActiveXObject("Microsoft.XMLHTTP")
+            }else if(window.XMLHttpRequest){
+                xhr = new XMLHttpRequest()
+            }
+            xhr.open("post",url,true);
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+            xhr.send('input_user='+pid);
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState==4&&xhr.status==200) {
+                    var res = xhr.responseText;
+                    var s = document.getElementById("spn_ship_man");
+                    {#                    s.innerHTML=res#}
+                    if (res == 'empty') {
+                        s.innerHTML = '用户名不能为空'
+                    }
+                    else{
+                        s.innerHTML = ''
+                    }
+                }
+            }
+        }
+        function checkadress() {
+            var pid = document.getElementById('input_adress').value;
+            var url = "{% url 'checkaddress' %}";
+
+            var xhr;
+            if(window.ActiveXObject){
+                xhr = new ActiveXObject("Microsoft.XMLHTTP")
+            }else if(window.XMLHttpRequest){
+                xhr = new XMLHttpRequest()
+            }
+            xhr.open("post",url,true);
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+            xhr.send('input_adress='+pid);
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState==4&&xhr.status==200) {
+                    var res = xhr.responseText;
+                    var s = document.getElementById("spn_ship_adress");
+                    {#                    s.innerHTML=res#}
+                    if (res == 'empty') {
+                        s.innerHTML = '地址不能为空'
+                    }
+                    else{
+                        s.innerHTML = ''
+                    }
+                }
+            }
+        }
+        function checkcode() {
+            var pid = document.getElementById('input_code').value;
+            var url = "{% url 'checkcode' %}";
+
+            var xhr;
+            if(window.ActiveXObject){
+                xhr = new ActiveXObject("Microsoft.XMLHTTP")
+            }else if(window.XMLHttpRequest){
+                xhr = new XMLHttpRequest()
+            }
+            xhr.open("post",url,true);
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+            xhr.send('input_code='+pid);
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState==4&&xhr.status==200) {
+                    var res = xhr.responseText;
+                    var s = document.getElementById("spn_ship_code");
+                    {#                    s.innerHTML=res#}
+                    if (res == 'empty') {
+                        s.innerHTML = '邮编不能为空'
+                    }
+                    else{
+                        s.innerHTML = ''
+                    }
+                }
+            }
+        }
+        function checkphone() {
+            var pid = document.getElementById('input_phone').value;
+            var url = "{% url 'checkphone' %}";
+
+            var xhr;
+            if(window.ActiveXObject){
+                xhr = new ActiveXObject("Microsoft.XMLHTTP")
+            }else if(window.XMLHttpRequest){
+                xhr = new XMLHttpRequest()
+            }
+            xhr.open("post",url,true);
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+            xhr.send('input_phone='+pid);
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState==4 && xhr.status==200) {
+                    var res = xhr.responseText;
+                    var s = document.getElementById("spn_ship_phone");
+                    {#                    s.innerHTML=res#}
+                    if (res == 'empty') {
+                        s.innerHTML = '手机号不能为空'
+                    }
+                    else{
+                        s.innerHTML = ''
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
